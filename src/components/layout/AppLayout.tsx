@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Package, ClipboardList, User, BarChart3, Menu, X } from "lucide-react";
+import { ClipboardList, User, BarChart3, Menu, X, Package } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import nexboxIcon from "@/assets/nexbox-icon.png";
 
 const navItems = [
   { label: "Portaria", icon: ClipboardList, path: "/" },
@@ -21,7 +22,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
       <header className="sticky top-0 z-50 border-b bg-primary text-primary-foreground">
         <div className="flex items-center justify-between px-4 h-14">
           <Link to="/" className="flex items-center gap-2 font-bold text-lg tracking-tight">
-            <Package className="h-6 w-6" />
+            <img src={nexboxIcon} alt="Nexbox" className="h-7 w-7 rounded" />
             Nexbox
           </Link>
           <Button
