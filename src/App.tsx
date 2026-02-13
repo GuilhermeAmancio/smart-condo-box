@@ -22,13 +22,13 @@ const App = () => (
       <PackageProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/welcome" element={<Welcome />} />
+            <Route path="/" element={<Welcome />} />
             <Route
               path="/*"
               element={
                 <AppLayout>
                   <Routes>
-                    <Route path="/" element={<Dashboard />} />
+                    <Route path="/gestao" element={<Dashboard />} />
                     <Route path="/registrar" element={<Register />} />
                     <Route path="/morador" element={<Resident />} />
                     <Route path="/admin" element={<Admin />} />

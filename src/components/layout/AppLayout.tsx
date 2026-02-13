@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import nexboxIcon from "@/assets/nexbox-icon.png";
 
 const managementItems = [
-  { label: "Portaria", icon: ClipboardList, path: "/" },
+  { label: "Portaria", icon: ClipboardList, path: "/gestao" },
   { label: "Registrar", icon: Package, path: "/registrar" },
   { label: "Admin", icon: BarChart3, path: "/admin" },
 ];
