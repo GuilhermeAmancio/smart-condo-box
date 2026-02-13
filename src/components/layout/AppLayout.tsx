@@ -5,12 +5,17 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import nexboxIcon from "@/assets/nexbox-icon.png";
 
-const navItems = [
+const managementItems = [
   { label: "Portaria", icon: ClipboardList, path: "/" },
   { label: "Registrar", icon: Package, path: "/registrar" },
-  { label: "Morador", icon: User, path: "/morador" },
   { label: "Admin", icon: BarChart3, path: "/admin" },
 ];
+
+const residentItems = [
+  { label: "Morador", icon: User, path: "/morador" },
+];
+
+const allItems = [...managementItems, ...residentItems];
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
@@ -35,7 +40,23 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           </Button>
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
-            {navItems.map((item) => (
+            {managementItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={cn(
+                  "flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors",
+                  location.pathname === item.path
+                    ? "bg-primary-foreground/20 text-primary-foreground"
+                    : "text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                )}
+              >
+                <item.icon className="h-4 w-4" />
+                {item.label}
+              </Link>
+            ))}
+            <div className="w-px h-6 bg-primary-foreground/30 mx-1" />
+            {residentItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
@@ -55,7 +76,26 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         {/* Mobile nav */}
         {mobileOpen && (
           <nav className="md:hidden border-t border-primary-foreground/20 pb-2">
-            {navItems.map((item) => (
+            <p className="px-4 pt-2 pb-1 text-xs font-semibold text-primary-foreground/50 uppercase tracking-wider">Gestão</p>
+            {managementItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                onClick={() => setMobileOpen(false)}
+                className={cn(
+                  "flex items-center gap-3 px-4 py-3 text-sm font-medium",
+                  location.pathname === item.path
+                    ? "bg-primary-foreground/20 text-primary-foreground"
+                    : "text-primary-foreground/70"
+                )}
+              >
+                <item.icon className="h-4 w-4" />
+                {item.label}
+              </Link>
+            ))}
+            <div className="border-t border-primary-foreground/20 my-1" />
+            <p className="px-4 pt-2 pb-1 text-xs font-semibold text-primary-foreground/50 uppercase tracking-wider">Morador</p>
+            {residentItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
@@ -80,7 +120,21 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
 
       {/* Bottom nav mobile */}
       <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-card border-t flex">
-        {navItems.map((item) => (
+        {managementItems.map((item) => (
+          <Link
+            key={item.path}
+            to={item.path}
+            className={cn(
+              "flex-1 flex flex-col items-center gap-1 py-2 text-xs font-medium transition-colors",
+              location.pathname === item.path ? "text-primary" : "text-muted-foreground"
+            )}
+          >
+            <item.icon className="h-5 w-5" />
+            {item.label}
+          </Link>
+        ))}
+        <div className="w-px my-2 bg-border" />
+        {residentItems.map((item) => (
           <Link
             key={item.path}
             to={item.path}
